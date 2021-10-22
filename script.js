@@ -1,1 +1,2 @@
-!
+// CREACION DEL TABLERO
+const BOARD_WIDTH =
