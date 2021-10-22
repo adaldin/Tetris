@@ -74,10 +74,32 @@
 /* GAME BOARD */
 
 .game__board {
-    width: 300px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(20, 1fr); 
+    justify-items: center;  
+    align-items: center;
     height: 600px;
-    border: 2px solid #333333;
+    width: 300px;
 }
+
+/* BLOQUES */
+
+.game__blocks {
+    background-color: black;
+    opacity: 0.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game__blocks--interior {
+    width: 17px;
+    height: 17px;
+    border: 4px solid #C6CFA2;
+}
+
 
 
 /* ASIDE BOARD */
@@ -108,6 +130,12 @@
     width: 120px;
     height: 120px;
     border: 2px solid #333333;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr); 
+    justify-items: center;  
+    align-items: center;
+
 }
 
 .instruction-key__board {
