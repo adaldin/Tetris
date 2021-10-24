@@ -1,15 +1,18 @@
 // -------------------------------------------
-// CREACION DEL BOARD PRINCIPAL
+// CONSTANTES DEL BOARD PRINCIPAL
 // -------------------------------------------
 const BOARD_WIDTH = 10; //ANCHO EN Nº BLOQUES
 const BOARD_HEIGHT = 20; //ALTO EN Nº BLOQUES
 
 // -------------------------------------------
-// CREACION DEL BOARD SECUNDARIO
+// CONSTANTES DEL BOARD SECUNDARIO
 // -------------------------------------------
 const BOARD_WIDTH_MINI_BOARD = 4;
 const BOARD_HEIGHT_MINI_BOARD = 4;
 
+// -------------------------------------------
+// CREACION DEL BOARD
+// ------------------------------------------- 
 
 // Creo función para crear un bloque
 function generateBoardBlock() {
@@ -142,6 +145,7 @@ function drawTetrominoeInMainBoard() {
         BOARD[currentPosition + index].classList.add('tetromino');
     });
 }
+drawTetrominoeInMainBoard();
 
 // DESPINTAR DE TETROMINO SELECCIONADO EN PANTALLA
 function undrawTetrominoeInMainBoard() {
@@ -154,26 +158,24 @@ function undrawTetrominoeInMainBoard() {
 // CREACION DE MOVIMIENTOS DE TETROMINOS
 // -------------------------------------------
 // creacion de constante de tiempo de caida de piezas 
-const TIMER = setInterval(moveDown, 1000);
+const TIMER = setInterval(moveDown, 200);
 
 // creacion de funcion callback  moveDown de interval para que bajen
 function moveDown() {
-    undrawTetrominoeInMainBoard();
+    undrawTetrominoeInMainBoard()
     currentPosition += BOARD_WIDTH;
-    drawTetrominoeInMainBoard();
-    freeze();
+    drawTetrominoeInMainBoard()
+    freeze()
 }
-
-// Creación de función para detener el tetromino al final y pintar uno nuevo
-
-function freeze(){
-    if(currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))){
+// creacion de funcion freeze para que cuando toquen el final, frenen
+function freeze() {
+    if (currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))) {
         currentTetromino.forEach(i => BOARD[currentPosition + i].classList.add('taken'));
-    
-    //hacemos que caiga un nuevo tetromino
-    generateRandomTetrominoe = Math.floor(Math.random()*TETROMINOES.length);
-    currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation]; 
-    currentPosition = 4;
-    drawTetrominoeInMainBoard();
-}
+
+        //hacemos que caiga un nuevo tetromino
+        generateRandomTetrominoe = Math.floor(Math.random() * TETROMINOES.length);
+        currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
+        currentPosition = 4;
+        drawTetrominoeInMainBoard();
+    }
 }
