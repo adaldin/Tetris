@@ -77,12 +77,13 @@
     border: 2px solid black;
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(20, 1fr); 
-    justify-items: center;  
+    grid-template-rows: repeat(20, 1fr);
+    justify-items: center;
     align-items: center;
     height: 600px;
     width: 300px;
 }
+
 
 /* BLOQUES */
 
@@ -99,7 +100,6 @@
     height: 17px;
     border: 4px solid #C6CFA2;
 }
-
 
 
 /* ASIDE BOARD */
@@ -120,7 +120,7 @@
     color: #333333;
 }
 
-.score__board {
+#score__board {
     width: 120px;
     height: 30px;
     border: 2px solid #333333;
@@ -132,10 +132,9 @@
     border: 2px solid #333333;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr); 
-    justify-items: center;  
+    grid-template-rows: repeat(4, 1fr);
+    justify-items: center;
     align-items: center;
-
 }
 
 .instruction-key__board {
@@ -152,4 +151,18 @@
     align-items: center;
     justify-content: space-evenly;
     font-weight: bold;
+}
+
+
+/* TETROMINOS */
+
+.tetromino {
+    opacity: 1;
+}
+
+
+/* LAST ROW INVISIBLE TETROMINOS */
+
+.taken {
+    opacity: 0;
 }
