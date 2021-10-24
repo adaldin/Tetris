@@ -28,6 +28,7 @@ function generateBoardBlock() {
 // creacion de funcion para generar bloques para meterlos en la última fila
 function lastRow() {
     const blockNoDisplay = document.createElement('div');
+    blockNoDisplay.classList.add('game__blocks');
     blockNoDisplay.classList.add('taken');
     blockNoDisplay.style.width = '25px';
     blockNoDisplay.style.height = '25px';
@@ -141,7 +142,6 @@ function drawTetrominoeInMainBoard() {
         BOARD[currentPosition + index].classList.add('tetromino');
     });
 }
-drawTetrominoeInMainBoard();
 
 // DESPINTAR DE TETROMINO SELECCIONADO EN PANTALLA
 function undrawTetrominoeInMainBoard() {
@@ -158,7 +158,22 @@ const TIMER = setInterval(moveDown, 1000);
 
 // creacion de funcion callback  moveDown de interval para que bajen
 function moveDown() {
-    undrawTetrominoeInMainBoard()
+    undrawTetrominoeInMainBoard();
     currentPosition += BOARD_WIDTH;
-    drawTetrominoeInMainBoard()
+    drawTetrominoeInMainBoard();
+    freeze();
+}
+
+// Creación de función para detener el tetromino al final y pintar uno nuevo
+
+function freeze(){
+    if(currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))){
+        currentTetromino.forEach(i => BOARD[currentPosition + i].classList.add('taken'));
+    
+    //hacemos que caiga un nuevo tetromino
+    generateRandomTetrominoe = Math.floor(Math.random()*TETROMINOES.length);
+    currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation]; 
+    currentPosition = 4;
+    drawTetrominoeInMainBoard();
+}
 }
