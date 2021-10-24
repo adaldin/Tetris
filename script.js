@@ -99,7 +99,7 @@ const L_TETROMINO = [
 const I_TETROMINO = [
     [1, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 3 + 1],
     [BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH + 3],
-    [1, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 3 + 1],
+    [1, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 3 + 1],
     [BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH + 3]
 ];
 const T_TETROMINO = [
@@ -126,6 +126,7 @@ const S_TETROMINO = [
 
 // CREACION DE ARRAY DE TODAS LAS PIEZAS
 const TETROMINOES = [J_TETROMINO, L_TETROMINO, I_TETROMINO, T_TETROMINO, S_TETROMINO, Z_TETROMINO];
+
 //DIFERENCIACION DE PIEZA QUE CAE
 let currentPosition = 4;
 let currentRotation = 0;
@@ -157,9 +158,26 @@ function undrawTetrominoeInMainBoard() {
 // -------------------------------------------
 // CREACION DE MOVIMIENTOS DE TETROMINOS
 // -------------------------------------------
-// creacion de constante de tiempo de caida de piezas 
-const TIMER = setInterval(moveDown, 200);
 
+//CAIDA DE PIEZAS
+// creacion de constante de tiempo de caida de piezas 
+const TIMER = setInterval(moveDown, 500);
+
+// CONTROLES CON TECLAS
+
+function control(e) {
+    if (e.keyCode === 37) {
+        moveLeft()
+    } else if (e.keyCode == 38) {
+        rotate();
+    } else if (e.keyCode === 39) {
+        moveRight();
+    } else if (e.keyCode === 40)
+        moveDown();
+}
+document.addEventListener('keyup', control);
+
+// MOVER ABAJO
 // creacion de funcion callback  moveDown de interval para que bajen
 function moveDown() {
     undrawTetrominoeInMainBoard()
@@ -167,6 +185,7 @@ function moveDown() {
     drawTetrominoeInMainBoard()
     freeze()
 }
+// CONGELAMIENTO EN ULTIMA LINEA
 // creacion de funcion freeze para que cuando toquen el final, frenen
 function freeze() {
     if (currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))) {
@@ -178,4 +197,46 @@ function freeze() {
         currentPosition = 4;
         drawTetrominoeInMainBoard();
     }
+}
+
+// MOVER IZQUIERDA
+function moveLeft() {
+    // despintar tetromino
+    undrawTetrominoeInMainBoard()
+        // sacar el lado izquierdo (indice 0,10,20,30..) y guardarlo en constante
+    const IS_AT_LEFT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === 0);
+    // si la posicion no és la de la variable de arriba
+    if (!IS_AT_LEFT_EDGE) { currentPosition -= 1 };
+    // y si alguna rotación del tetromino no es de los divs 'taken'
+    if (currentTetromino.some(index => BOARD[currentPosition + index].classList.contains('taken'))) {
+        currentPosition += 1;
+    }
+    // pintarla hacia la izquierda
+    drawTetrominoeInMainBoard();
+}
+
+// MOVER DERECHA
+function moveRight() {
+    undrawTetrominoeInMainBoard()
+        // constante si algun indice del tetromino toca la posicion -1 (que es moverse del 0(la primera)a  -1(la última))
+    const IS_AT_RIGHT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === BOARD_WIDTH - 1);
+    if (!IS_AT_RIGHT_EDGE) {
+        currentPosition += 1
+    }
+    if (currentTetromino.some(index => BOARD[currentPosition + index].classList.contains('taken'))) {
+        currentPosition -= 1;
+    }
+    drawTetrominoeInMainBoard()
+}
+
+// MOVER ARRIBA-ROTAR TETROMINO
+function rotate() {
+    undrawTetrominoeInMainBoard();
+    currentRotation++
+    if (currentRotation === currentTetromino.length) {
+        currentRotation = 0
+    } else {
+        currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
+    }
+    drawTetrominoeInMainBoard()
 }
