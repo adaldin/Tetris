@@ -3,6 +3,7 @@
 // -------------------------------------------
 const BOARD_WIDTH = 10; //ANCHO EN Nº BLOQUES
 const BOARD_HEIGHT = 20; //ALTO EN Nº BLOQUES
+let nextRandom = 0;
 
 // -------------------------------------------
 // CONSTANTES DEL BOARD SECUNDARIO
@@ -164,7 +165,6 @@ function undrawTetrominoeInMainBoard() {
 const TIMER = setInterval(moveDown, 500);
 
 // CONTROLES CON TECLAS
-
 function control(e) {
     if (e.keyCode === 37) {
         moveLeft()
@@ -174,10 +174,11 @@ function control(e) {
         moveRight();
     } else if (e.keyCode === 40)
         moveDown();
+
 }
 document.addEventListener('keyup', control);
 
-// MOVER ABAJO
+// CAIDA DE PIEZAS
 // creacion de funcion callback  moveDown de interval para que bajen
 function moveDown() {
     undrawTetrominoeInMainBoard()
@@ -192,10 +193,12 @@ function freeze() {
         currentTetromino.forEach(i => BOARD[currentPosition + i].classList.add('taken'));
 
         //hacemos que caiga un nuevo tetromino
-        generateRandomTetrominoe = Math.floor(Math.random() * TETROMINOES.length);
+        generateRandomTetrominoe = nextRandom; //random tetromino generado es ahora nextRandom (0)
+        nextRandom = Math.floor(Math.random() * TETROMINOES.length); //nextRandom es ahora GenerateRandom Tetro
         currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
         currentPosition = 4;
         drawTetrominoeInMainBoard();
+        displayShape(); //pinto en MINI_BOARD
     }
 }
 
@@ -239,4 +242,33 @@ function rotate() {
         currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
     }
     drawTetrominoeInMainBoard()
+}
+
+// -------------------------------------------
+// MINIBOARD
+// -------------------------------------------
+//all the divs inside de div minigrid
+// MINI_BOARD -selecciona todos los divs
+// BOARD_WIDTH_MINI_BOARD -ancho del container
+let displayIndex = BOARD_WIDTH_MINI_BOARD % 2 === 0;
+
+//tetros sin rotacion del mini boards (elijo una sola rotacion)
+const UP_NEXT_TETROMINO = [
+    [1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD * 2 + 1, 2],
+    [1, 2, BOARD_WIDTH_MINI_BOARD + 2, BOARD_WIDTH_MINI_BOARD * 2 + 2],
+    [1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD * 2 + 1, BOARD_WIDTH_MINI_BOARD * 3 + 1],
+    [1, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2],
+    [0, 1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2],
+    [1, 2, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1]
+];
+
+//display tetromino en Mini Board 
+function displayShape() {
+    MINI_BOARD.forEach(BOARD => {
+        BOARD.classList.remove('tetromino'); //despinto cualquier tetro que haya
+    })
+    UP_NEXT_TETROMINO[nextRandom].forEach(index => {
+        //por cada nuevo random tetr, cada div del mini board toma clase tetro
+        MINI_BOARD[displayIndex + index].classList.add('tetromino');
+    })
 }
