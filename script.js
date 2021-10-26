@@ -78,23 +78,15 @@ const SCORE_DISPLAY = document.querySelector('#score__board'); //creacionn de va
 // CREACION DE TETROMINOS
 // -------------------------------------------
 const J_TETROMINO = [
-    //ROTACION 0  
     [1, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, 2],
-    //ROTACION 1 
     [BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2 + 2],
-    //ROTACION ·2
     [1, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 2],
-    //ROTACION 3
     [BOARD_WIDTH, BOARD_WIDTH * 2, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 2 + 2]
 ];
 const L_TETROMINO = [
-    //ROTACION 0  
     [1, 2, BOARD_WIDTH + 2, BOARD_WIDTH * 2 + 2],
-    //ROTACION 1 
     [BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2],
-    //ROTACION ·2
     [1, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 2 + 2],
-    //ROTACION 3
     [BOARD_WIDTH + 2, BOARD_WIDTH * 2, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 2 + 2]
 ];
 const I_TETROMINO = [
@@ -112,21 +104,26 @@ const T_TETROMINO = [
 const Z_TETROMINO = [
     [0, 1, BOARD_WIDTH + 1, BOARD_WIDTH + 2],
     [2, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2 + 1],
-    [BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 2 + 2],
-    [1, BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH * 2]
+    [0, 1, BOARD_WIDTH + 1, BOARD_WIDTH + 2],
+    [2, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2 + 1]
 ];
-
-
 const S_TETROMINO = [
     [1, 2, BOARD_WIDTH, BOARD_WIDTH + 1],
     [0, BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1],
-    [BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2, BOARD_WIDTH * 2 + 1],
-    [1, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2 + 2]
+    [1, 2, BOARD_WIDTH, BOARD_WIDTH + 1],
+    [0, BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1]
+];
+const O_TETROMINO = [
+    [0, 1, BOARD_WIDTH, BOARD_WIDTH + 1],
+    [0, 1, BOARD_WIDTH, BOARD_WIDTH + 1],
+    [0, 1, BOARD_WIDTH, BOARD_WIDTH + 1],
+    [0, 1, BOARD_WIDTH, BOARD_WIDTH + 1]
+
 ];
 
 
 // CREACION DE ARRAY DE TODAS LAS PIEZAS
-const TETROMINOES = [J_TETROMINO, L_TETROMINO, I_TETROMINO, T_TETROMINO, S_TETROMINO, Z_TETROMINO];
+const TETROMINOES = [J_TETROMINO, L_TETROMINO, I_TETROMINO, T_TETROMINO, S_TETROMINO, Z_TETROMINO, O_TETROMINO];
 
 //DIFERENCIACION DE PIEZA QUE CAE
 let currentPosition = 4;
@@ -177,6 +174,13 @@ function control(e) {
 
 }
 document.addEventListener('keyup', control);
+
+//bloqueo de scroll
+window.addEventListener("keydown", function(e) {
+    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 // CAIDA DE PIEZAS
 // creacion de funcion callback  moveDown de interval para que bajen
@@ -250,25 +254,28 @@ function rotate() {
 //all the divs inside de div minigrid
 // MINI_BOARD -selecciona todos los divs
 // BOARD_WIDTH_MINI_BOARD -ancho del container
-let displayIndex = BOARD_WIDTH_MINI_BOARD % 2 === 0;
+let displayIndex = 0;
 
 //tetros sin rotacion del mini boards (elijo una sola rotacion)
 const UP_NEXT_TETROMINO = [
-    [1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD * 2 + 1, 2],
-    [1, 2, BOARD_WIDTH_MINI_BOARD + 2, BOARD_WIDTH_MINI_BOARD * 2 + 2],
-    [1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD * 2 + 1, BOARD_WIDTH_MINI_BOARD * 3 + 1],
-    [1, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2],
-    [0, 1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2],
-    [1, 2, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1]
+    [1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD * 2 + 1, 2], //J-rotacion 0
+    [1, 2, BOARD_WIDTH_MINI_BOARD + 2, BOARD_WIDTH_MINI_BOARD * 2 + 2], //L-rotacion 0
+    [1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD * 2 + 1, BOARD_WIDTH_MINI_BOARD * 3 + 1], //I- rotacion 0
+    [1, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2], //T-rotacion  0
+    [0, 1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2], //Z-rotacion 0
+    [1, 2, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1], //S-rotacion 0
+    [0, 1, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1] //O-rotacion 0
 ];
 
 //display tetromino en Mini Board 
 function displayShape() {
-    MINI_BOARD.forEach(BOARD => {
-        BOARD.classList.remove('tetromino'); //despinto cualquier tetro que haya
-    })
+    MINI_BOARD.forEach(BOARD => { //selecciono del mini board todos los divs (BOARD)
+            BOARD.classList.remove('tetromino'); //despinto cualquier tetro que haya
+        })
+        //del nuevo array de tetros, pinto el tetromino random de next random(la funcion es llamada cuando hace freeze)
     UP_NEXT_TETROMINO[nextRandom].forEach(index => {
-        //por cada nuevo random tetr, cada div del mini board toma clase tetro
+        //por cada iteración sobre tetrominos randonm, le sumo valor index pasado arriba
+        // y cada div de ese tetro del mini board toma clase tetro
         MINI_BOARD[displayIndex + index].classList.add('tetromino');
     })
 }
