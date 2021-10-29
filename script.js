@@ -143,10 +143,7 @@ let currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
 
 // PINTAR TETROMINO SELECCIONADO EN PANTALLA
 function drawTetrominoeInMainBoard() {
-    //en arr CurrenTetromino aplico for each
     currentTetromino.forEach(index => {
-        //para que en cada iteración en la posicion de cada iteracion
-        //agregue la clase (opacidad)al div del grid tetromino
         BOARD[currentPosition + index].classList.add('tetromino');
     });
 }
@@ -188,7 +185,7 @@ document.addEventListener('keydown', control);
 // }, false);
 
 window.addEventListener("keydown", function(e) {
-    if(["ArrowDown","ArrowLeft","ArrowRight","ArrowUp"].indexOf(e.code) > -1) {
+    if (["ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp"].indexOf(e.code) > -1) {
         console.log(e.code)
         e.preventDefault();
     }
@@ -283,8 +280,8 @@ const UP_NEXT_TETROMINO = [
     [1, 2, BOARD_WIDTH_MINI_BOARD + 2, BOARD_WIDTH_MINI_BOARD * 2 + 2], //L-rotacion 0
     [1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD * 2 + 1, BOARD_WIDTH_MINI_BOARD * 3 + 1], //I- rotacion 0
     [1, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2], //T-rotacion  0
-    [0, 1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2], //Z-rotacion 0
     [1, 2, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1], //S-rotacion 0
+    [0, 1, BOARD_WIDTH_MINI_BOARD + 1, BOARD_WIDTH_MINI_BOARD + 2], //Z-rotacion 0
     [0, 1, BOARD_WIDTH_MINI_BOARD, BOARD_WIDTH_MINI_BOARD + 1] //O-rotacion 0
 ];
 
@@ -301,22 +298,22 @@ function displayShape() {
     })
 }
 
-function updateTetrisBoard(){
-    for(let i = 0; i<199; i+=BOARD_WIDTH){
-        const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9];
+function updateTetrisBoard() {
+    for (let i = 0; i < 199; i += BOARD_WIDTH) {
+        const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
 
-        if(row.every(i=>
-            BOARD[i].classList.contains('tetromino')
-        )){
-           SCORE += 50;
-           scoreDOM.textContent = SCORE;
-           row.forEach(i=> {
-               BOARD[i].classList.remove('taken');
-               BOARD[i].classList.remove('tetromino');
-           })
-           const SQUARES_REMOVED = BOARD.splice(i, BOARD_WIDTH);
-           BOARD = SQUARES_REMOVED.concat(BOARD); 
-           BOARD.forEach(index => GRID.appendChild(index));
+        if (row.every(i =>
+                BOARD[i].classList.contains('tetromino')
+            )) {
+            SCORE += 50;
+            scoreDOM.textContent = SCORE;
+            row.forEach(i => {
+                BOARD[i].classList.remove('taken');
+                BOARD[i].classList.remove('tetromino');
+            })
+            const SQUARES_REMOVED = BOARD.splice(i, BOARD_WIDTH);
+            BOARD = SQUARES_REMOVED.concat(BOARD);
+            BOARD.forEach(index => GRID.appendChild(index));
         }
     }
 }
@@ -327,14 +324,14 @@ function updateTetrisBoard(){
 
 // creo una función para que la página se recargue y así empezar el juego
 // esta función es la que voy a usar para el eventListener dentro de la función de isGameOver()
-function reStart(){
+function reStart() {
     location.reload()
 }
 
 
 //creacion de una funcion que pinta en el navegador el popup de game over. También he incluido el eventListener para recargar la página
-function drawGameOverBoard(){
-    document.querySelector('.body_container').style.backgroundColor= '#515541';
+function drawGameOverBoard() {
+    document.querySelector('.body_container').style.backgroundColor = '#515541';
     document.querySelector('.game__board').style.opacity = '0.3';
     document.querySelector('.next-tetro__board').style.opacity = '0.3';
     document.querySelector('.logo__container').style.opacity = '0.1';
@@ -343,7 +340,7 @@ function drawGameOverBoard(){
     gameOverDiv.textContent = 'GAME OVER';
     const gameOverButton = document.createElement('button');
     gameOverButton.classList.add('gameOverButton');
-    gameOverButton.textContent= 'RESTART';
+    gameOverButton.textContent = 'RESTART';
     const gameOverScoreDiv = document.createElement('div');
     gameOverScoreDiv.classList.add('gameOverDiv__gameOverScoreDiv');
     const gameOverScore = document.createElement('p');
@@ -357,8 +354,8 @@ function drawGameOverBoard(){
 
 }
 
-function isGameOver(){
-    if(currentPosition >= BOARD_WIDTH && currentPosition <= BOARD_WIDTH*2){
+function isGameOver() {
+    if (currentPosition >= BOARD_WIDTH && currentPosition <= BOARD_WIDTH * 2) {
         clearInterval(TIMER);
         drawGameOverBoard();
     }
