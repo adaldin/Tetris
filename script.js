@@ -73,7 +73,7 @@ drawLastRow('.game__board', BOARD_WIDTH); // ejecutamos la funcion para pintar l
 // CREACION DE VARIABLES PARA IMPLEMENTAR
 // -------------------------------------------
 
-const GRID = document.querySelectorAll('.game__board');
+const GRID = document.querySelector('.game__board');
 
 let BOARD = Array.from(document.querySelectorAll('.game__board .game__blocks'));
 const MINI_BOARD = Array.from(document.querySelectorAll('.next-tetro__board .game__blocks'))
@@ -168,7 +168,7 @@ function undrawTetrominoeInMainBoard() {
 
 //CAIDA DE PIEZAS
 // creacion de constante de tiempo de caida de piezas 
-const TIMER = setInterval(moveDown, 500);
+const TIMER = setInterval(moveDown, 1000);
 
 // CONTROLES CON TECLAS
 function control(e) {
@@ -295,7 +295,7 @@ function displayShape() {
 }
 
 function updateTetrisBoard(){
-    for(let i = 0; i<BOARD_WIDTH*BOARD_HEIGHT; i+=BOARD_WIDTH){
+    for(let i = 0; i<199; i+=BOARD_WIDTH){
         const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9];
 
         if(row.every(i=>
@@ -309,7 +309,7 @@ function updateTetrisBoard(){
            })
            const SQUARES_REMOVED = BOARD.splice(i, BOARD_WIDTH);
            BOARD = SQUARES_REMOVED.concat(BOARD); 
-           document.querySelector('.game__board').appendChild(row);
+           BOARD.forEach(index => GRID.appendChild(index));
         }
     }
 }
