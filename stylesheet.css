@@ -178,12 +178,12 @@
     height: 200px;
     background-color: #C6CFA2;
     border: 1px solid black;
-    font-size: 30px;
     text-align: center;
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 20px;
     box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 
@@ -201,4 +201,8 @@
 
 .gameOverButton:active {
     background-color: #C6CFA2;
+}
+
+.gameOverDiv p{
+    font-size: 1.5rem;
 }
