@@ -4,6 +4,11 @@
 const BOARD_WIDTH = 10; //ANCHO EN Nº BLOQUES
 const BOARD_HEIGHT = 20; //ALTO EN Nº BLOQUES
 let nextRandom = 0;
+let SCORE = 0;
+const scoreDOM = document.getElementById('score__board');
+scoreDOM.textContent = SCORE;
+const MUSIC = new Audio()
+
 
 // -------------------------------------------
 // CONSTANTES DEL BOARD SECUNDARIO
@@ -34,6 +39,7 @@ function lastRow() {
     const blockNoDisplay = document.createElement('div');
     blockNoDisplay.classList.add('game__blocks');
     blockNoDisplay.classList.add('taken');
+    blockNoDisplay.classList.add('tetromino');
     blockNoDisplay.style.width = '25px';
     blockNoDisplay.style.height = '25px';
     blockNoDisplay.style.display = 'none'; // tienen display none para que no sean visibles en el navegador
@@ -67,9 +73,9 @@ drawLastRow('.game__board', BOARD_WIDTH); // ejecutamos la funcion para pintar l
 // CREACION DE VARIABLES PARA IMPLEMENTAR
 // -------------------------------------------
 
-const GRID = document.querySelectorAll('.game__board');
+const GRID = document.querySelector('.game__board');
 
-const BOARD = Array.from(document.querySelectorAll('.game__board .game__blocks'));
+let BOARD = Array.from(document.querySelectorAll('.game__board .game__blocks'));
 const MINI_BOARD = Array.from(document.querySelectorAll('.next-tetro__board .game__blocks'))
 
 const SCORE_DISPLAY = document.querySelector('#score__board'); //creacionn de variable para traer el div de puntuación
@@ -159,7 +165,7 @@ function undrawTetrominoeInMainBoard() {
 
 //CAIDA DE PIEZAS
 // creacion de constante de tiempo de caida de piezas 
-const TIMER = setInterval(moveDown, 500);
+const TIMER = setInterval(moveDown, 1000);
 
 // CONTROLES CON TECLAS
 function control(e) {
@@ -171,9 +177,22 @@ function control(e) {
         moveRight();
     } else if (e.keyCode === 40)
         moveDown();
-
 }
-document.addEventListener('keyup', control);
+document.addEventListener('keydown', control);
+
+// window.addEventListener("keydown", function(e) {
+//     // space and arrow keys
+//     if([37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+//         e.preventDefault();
+//     }
+// }, false);
+
+window.addEventListener("keydown", function(e) {
+    if(["ArrowDown","ArrowLeft","ArrowRight","ArrowUp"].indexOf(e.code) > -1) {
+        console.log(e.code)
+        e.preventDefault();
+    }
+});
 
 //bloqueo de scroll
 window.addEventListener("keydown", function(e) {
@@ -187,14 +206,15 @@ window.addEventListener("keydown", function(e) {
 function moveDown() {
     undrawTetrominoeInMainBoard()
     currentPosition += BOARD_WIDTH;
-    drawTetrominoeInMainBoard()
-    freeze()
+    drawTetrominoeInMainBoard();
+    freeze();
 }
 // CONGELAMIENTO EN ULTIMA LINEA
 // creacion de funcion freeze para que cuando toquen el final, frenen
 function freeze() {
     if (currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))) {
         currentTetromino.forEach(i => BOARD[currentPosition + i].classList.add('taken'));
+        isGameOver();
 
         //hacemos que caiga un nuevo tetromino
         generateRandomTetrominoe = nextRandom; //random tetromino generado es ahora nextRandom (0)
@@ -203,6 +223,7 @@ function freeze() {
         currentPosition = 4;
         drawTetrominoeInMainBoard();
         displayShape(); //pinto en MINI_BOARD
+        updateTetrisBoard();
     }
 }
 
@@ -237,7 +258,7 @@ function moveRight() {
 }
 
 // MOVER ARRIBA-ROTAR TETROMINO
-function rotate() {
+function rotate(event) {
     undrawTetrominoeInMainBoard();
     currentRotation++
     if (currentRotation === currentTetromino.length) {
@@ -278,4 +299,67 @@ function displayShape() {
         // y cada div de ese tetro del mini board toma clase tetro
         MINI_BOARD[displayIndex + index].classList.add('tetromino');
     })
+}
+
+function updateTetrisBoard(){
+    for(let i = 0; i<199; i+=BOARD_WIDTH){
+        const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9];
+
+        if(row.every(i=>
+            BOARD[i].classList.contains('tetromino')
+        )){
+           SCORE += 50;
+           scoreDOM.textContent = SCORE;
+           row.forEach(i=> {
+               BOARD[i].classList.remove('taken');
+               BOARD[i].classList.remove('tetromino');
+           })
+           const SQUARES_REMOVED = BOARD.splice(i, BOARD_WIDTH);
+           BOARD = SQUARES_REMOVED.concat(BOARD); 
+           BOARD.forEach(index => GRID.appendChild(index));
+        }
+    }
+}
+
+
+// creando la función de GameOver
+
+
+// creo una función para que la página se recargue y así empezar el juego
+// esta función es la que voy a usar para el eventListener dentro de la función de isGameOver()
+function reStart(){
+    location.reload()
+}
+
+
+//creacion de una funcion que pinta en el navegador el popup de game over. También he incluido el eventListener para recargar la página
+function drawGameOverBoard(){
+    document.querySelector('.body_container').style.backgroundColor= '#515541';
+    document.querySelector('.game__board').style.opacity = '0.3';
+    document.querySelector('.next-tetro__board').style.opacity = '0.3';
+    document.querySelector('.logo__container').style.opacity = '0.1';
+    const gameOverDiv = document.createElement('div');
+    gameOverDiv.classList.add('gameOverDiv');
+    gameOverDiv.textContent = 'GAME OVER';
+    const gameOverButton = document.createElement('button');
+    gameOverButton.classList.add('gameOverButton');
+    gameOverButton.textContent= 'RESTART';
+    const gameOverScoreDiv = document.createElement('div');
+    gameOverScoreDiv.classList.add('gameOverDiv__gameOverScoreDiv');
+    const gameOverScore = document.createElement('p');
+    gameOverScore.textContent = SCORE;
+    gameOverScore.classList.add('gameOverDiv__score');
+    document.body.appendChild(gameOverDiv);
+    gameOverDiv.appendChild(gameOverButton);
+    gameOverDiv.appendChild(gameOverScoreDiv);
+    gameOverScoreDiv.appendChild(gameOverScore);
+    gameOverButton.addEventListener('click', reStart)
+
+}
+
+function isGameOver(){
+    if(currentPosition >= BOARD_WIDTH && currentPosition <= BOARD_WIDTH*2){
+        clearInterval(TIMER);
+        drawGameOverBoard();
+    }
 }

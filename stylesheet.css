@@ -129,6 +129,10 @@
     width: 120px;
     height: 30px;
     border: 2px solid #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
 }
 
 .next-tetro__board {
@@ -166,9 +170,35 @@
 }
 
 
-/* LAST ROW INVISIBLE TETROMINOS */
+/* GAME OVER DIV */
 
+.gameOverDiv{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background-color: #C6CFA2;
+    border: 1px solid black;
+    font-size: 30px;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 
-/* .taken {
+}
 
-} */
+.gameOverButton {
+    background-color: #C6CFA2;
+    padding: 5px;
+    width: 40%;
+}
+
+.gameOverButton:hover{
+    background-color: #a3aa85 ;
+}
+
+.gameOverButton:active {
+    background-color: #C6CFA2;
+}
