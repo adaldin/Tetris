@@ -222,9 +222,9 @@ function freeze() {
         nextRandom = Math.floor(Math.random() * TETROMINOES.length); //nextRandom es ahora GenerateRandom Tetro
         currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
         currentPosition = 4;
+        updateTetrisBoard();
         drawTetrominoeInMainBoard();
         displayShape(); //pinto en MINI_BOARD
-        updateTetrisBoard();
     }
 }
 
@@ -335,24 +335,27 @@ function reStart() {
 
 //creacion de una funcion que pinta en el navegador el popup de game over. También he incluido el eventListener para recargar la página
 function drawGameOverBoard() {
-    document.querySelector('.body_container').style.backgroundColor = '#515541';
+    document.querySelector('.body_container').style.backgroundColor= '#515541';
     document.querySelector('.game__board').style.opacity = '0.3';
     document.querySelector('.next-tetro__board').style.opacity = '0.3';
     document.querySelector('.logo__container').style.opacity = '0.1';
     const gameOverDiv = document.createElement('div');
     gameOverDiv.classList.add('gameOverDiv');
-    gameOverDiv.textContent = 'GAME OVER';
+    // gameOverDiv.textContent = 'GAME OVER';
+    const gameOverH1 = document.createElement('h1');
+    gameOverH1.textContent= 'GAME OVER!';
+    gameOverDiv.appendChild(gameOverH1);
     const gameOverButton = document.createElement('button');
     gameOverButton.classList.add('gameOverButton');
-    gameOverButton.textContent = 'RESTART';
+    gameOverButton.textContent= 'RESTART';
     const gameOverScoreDiv = document.createElement('div');
     gameOverScoreDiv.classList.add('gameOverDiv__gameOverScoreDiv');
     const gameOverScore = document.createElement('p');
-    gameOverScore.textContent = SCORE;
+    gameOverScore.textContent = `SCORE:${SCORE}`;
     gameOverScore.classList.add('gameOverDiv__score');
     document.body.appendChild(gameOverDiv);
-    gameOverDiv.appendChild(gameOverButton);
     gameOverDiv.appendChild(gameOverScoreDiv);
+    gameOverDiv.appendChild(gameOverButton);
     gameOverScoreDiv.appendChild(gameOverScore);
     gameOverButton.addEventListener('click', reStart)
 
