@@ -83,12 +83,15 @@ const SCORE_DISPLAY = document.querySelector('#score__board'); //creacionn de va
 // -------------------------------------------
 // CREACION DE TETROMINOS
 // -------------------------------------------
+
+
 const J_TETROMINO = [
     [1, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, 2],
     [BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2 + 2],
     [1, BOARD_WIDTH + 1, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 2],
     [BOARD_WIDTH, BOARD_WIDTH * 2, BOARD_WIDTH * 2 + 1, BOARD_WIDTH * 2 + 2]
 ];
+
 const L_TETROMINO = [
     [1, 2, BOARD_WIDTH + 2, BOARD_WIDTH * 2 + 2],
     [BOARD_WIDTH, BOARD_WIDTH + 1, BOARD_WIDTH + 2, BOARD_WIDTH * 2],
@@ -143,6 +146,7 @@ let currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
 
 // PINTAR TETROMINO SELECCIONADO EN PANTALLA
 function drawTetrominoeInMainBoard() {
+
     currentTetromino.forEach(index => {
         BOARD[currentPosition + index].classList.add('tetromino');
     });
@@ -325,7 +329,7 @@ function updateTetrisBoard() {
 // creo una función para que la página se recargue y así empezar el juego
 // esta función es la que voy a usar para el eventListener dentro de la función de isGameOver()
 function reStart() {
-    location.reload()
+    location.reload() //carga de nuevo la URL actual, como lo hace el boton de Refresh de los navegadores.
 }
 
 
