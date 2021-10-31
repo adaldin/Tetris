@@ -264,9 +264,9 @@ function rotate(event) {
     currentRotation++
     if (currentRotation === currentTetromino.length) {
         currentRotation = 0
-    } else {
-        currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
     }
+    currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
+
     drawTetrominoeInMainBoard()
 }
 
@@ -335,7 +335,7 @@ function reStart() {
 
 //creacion de una funcion que pinta en el navegador el popup de game over. También he incluido el eventListener para recargar la página
 function drawGameOverBoard() {
-    document.querySelector('.body_container').style.backgroundColor= '#515541';
+    document.querySelector('.body_container').style.backgroundColor = '#515541';
     document.querySelector('.game__board').style.opacity = '0.3';
     document.querySelector('.next-tetro__board').style.opacity = '0.3';
     document.querySelector('.logo__container').style.opacity = '0.1';
@@ -343,11 +343,11 @@ function drawGameOverBoard() {
     gameOverDiv.classList.add('gameOverDiv');
     // gameOverDiv.textContent = 'GAME OVER';
     const gameOverH1 = document.createElement('h1');
-    gameOverH1.textContent= 'GAME OVER!';
+    gameOverH1.textContent = 'GAME OVER!';
     gameOverDiv.appendChild(gameOverH1);
     const gameOverButton = document.createElement('button');
     gameOverButton.classList.add('gameOverButton');
-    gameOverButton.textContent= 'RESTART';
+    gameOverButton.textContent = 'RESTART';
     const gameOverScoreDiv = document.createElement('div');
     gameOverScoreDiv.classList.add('gameOverDiv__gameOverScoreDiv');
     const gameOverScore = document.createElement('p');
