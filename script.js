@@ -9,7 +9,7 @@ const scoreDOM = document.getElementById('score__board');
 scoreDOM.textContent = SCORE;
 
 
-        // creo el evento para que suene el tema principal o se pause
+// creo el evento para que suene el tema principal o se pause
 // music_button.addEventListener('onlplay', () => {    
 //     let main_sound = main_sound.play();
 // });
@@ -27,18 +27,19 @@ scoreDOM.textContent = SCORE;
 
 let audio = document.getElementById('audio');
 let play = document.getElementById('play');
-function accionPlay(){
-    if(!audio.paused && !audio.ended) {
-        audio.pause();
-        play.value= '\u25BA';
 
-    }
-    else{
+function accionPlay() {
+    if (!audio.paused && !audio.ended) {
+        audio.pause();
+        play.value = '\u25BA';
+
+    } else {
         audio.play();
-        play.value= '||'
+        play.value = '||'
     }
 };
-function iniciar(){
+
+function iniciar() {
     play.addEventListener("click", accionPlay, false);
 };
 audio.addEventListener('click', accionPlay);
@@ -228,7 +229,7 @@ function control(e) {
         move_sound.play();
         moveDown();
     }
-        
+
 }
 document.addEventListener('keydown', control);
 
@@ -266,11 +267,11 @@ function moveDown() {
 function freeze() {
     if (currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))) {
         currentTetromino.forEach(i => BOARD[currentPosition + i].classList.add('taken'));
-        
+
         //Incluyo el audio del freeze
         const shift_sound = new Audio("music/samples_shift.mp3");
         shift_sound.play();
-        
+
         isGameOver();
 
         //hacemos que caiga un nuevo tetromino
@@ -316,9 +317,22 @@ function moveRight() {
 
 // MOVER ARRIBA-ROTAR TETROMINO
 function rotate(event) {
+    const IS_AT_RIGHT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === BOARD_WIDTH - 1);
+    const IS_AT_LEFT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === 0);
     undrawTetrominoeInMainBoard();
-    currentRotation++
-    if (currentRotation === currentTetromino.length) {
+
+    if (IS_AT_LEFT_EDGE & currentTetromino != I_TETROMINO) {
+        currentPosition += 1;
+        // currentRotation +=1
+    }
+
+    if (IS_AT_RIGHT_EDGE) {
+        currentPosition -= 1;
+        // currentRotation +=1
+    }
+    currentRotation++;
+
+    if (currentRotation >= currentTetromino.length) {
         currentRotation = 0
     }
     currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
