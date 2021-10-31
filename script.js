@@ -7,7 +7,44 @@ let nextRandom = 0;
 let SCORE = 0;
 const scoreDOM = document.getElementById('score__board');
 scoreDOM.textContent = SCORE;
-const MUSIC = new Audio()
+
+
+        // creo el evento para que suene el tema principal o se pause
+// music_button.addEventListener('onlplay', () => {    
+//     let main_sound = main_sound.play();
+// });
+// function start_music() { 
+//         // selecciono el button para la música tema principal
+//     let music_button = document.getElementById("music_button");
+//     music_button.addEventListener('click', press_button, false); 
+//  } 
+//  function press_button() { 
+//         // selecciono la etiqueta de audio para incluir el tema principal
+//     let main_sound = document.getElementById("audio");
+//     main_sound.play(); 
+//  } 
+//  window.addEventListener('load', start_music, false); 
+
+let audio = document.getElementById('audio');
+let play = document.getElementById('play');
+function accionPlay(){
+    if(!audio.paused && !audio.ended) {
+        audio.pause();
+        play.value= '\u25BA';
+
+    }
+    else{
+        audio.play();
+        play.value= '||'
+    }
+};
+function iniciar(){
+    play.addEventListener("click", accionPlay, false);
+};
+audio.addEventListener('click', accionPlay);
+window.addEventListener('load', iniciar, false);
+
+
 
 
 // -------------------------------------------
@@ -170,14 +207,28 @@ const TIMER = setInterval(moveDown, 1000);
 
 // CONTROLES CON TECLAS
 function control(e) {
+
+    // incluyo el audio para que esté disponible para todos los desplazamiento de las fichas
+    const move_sound = new Audio("music/samples_move.mp3");
     if (e.keyCode === 37) {
+        //ejecuto el sonido de desplazmiento
+        move_sound.play();
         moveLeft()
     } else if (e.keyCode == 38) {
+        //incluyo el audio de las rotaciones
+        const rotation_sound = new Audio("music/samples_rotate.mp3");
+        rotation_sound.play();
         rotate();
     } else if (e.keyCode === 39) {
+        //ejecuto el sonido de desplazmiento
+        move_sound.play();
         moveRight();
-    } else if (e.keyCode === 40)
+    } else if (e.keyCode === 40) {
+        //ejecuto el sonido de desplazmiento
+        move_sound.play();
         moveDown();
+    }
+        
 }
 document.addEventListener('keydown', control);
 
@@ -215,6 +266,11 @@ function moveDown() {
 function freeze() {
     if (currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))) {
         currentTetromino.forEach(i => BOARD[currentPosition + i].classList.add('taken'));
+        
+        //Incluyo el audio del freeze
+        const shift_sound = new Audio("music/samples_shift.mp3");
+        shift_sound.play();
+        
         isGameOver();
 
         //hacemos que caiga un nuevo tetromino
@@ -318,6 +374,10 @@ function updateTetrisBoard() {
             const SQUARES_REMOVED = BOARD.splice(i, BOARD_WIDTH);
             BOARD = SQUARES_REMOVED.concat(BOARD);
             BOARD.forEach(index => GRID.appendChild(index));
+
+            //incluyo el audio del scoring
+            const tetris_sound = new Audio("music/samples_tetris.mp3");
+            tetris_sound.play();
         }
     }
 }
@@ -339,6 +399,7 @@ function drawGameOverBoard() {
     document.querySelector('.game__board').style.opacity = '0.3';
     document.querySelector('.next-tetro__board').style.opacity = '0.3';
     document.querySelector('.logo__container').style.opacity = '0.1';
+    document.querySelector('.buttonMusic_container').style.opacity = '0.1';
     const gameOverDiv = document.createElement('div');
     gameOverDiv.classList.add('gameOverDiv');
     // gameOverDiv.textContent = 'GAME OVER';
@@ -364,6 +425,14 @@ function drawGameOverBoard() {
 function isGameOver() {
     if (currentPosition >= BOARD_WIDTH && currentPosition <= BOARD_WIDTH * 2) {
         clearInterval(TIMER);
+
+        // quito el sonido del tema principal
+        audio.pause();
+        audio.currentTime = 0;
+
+        // incluyo el sonido del game over
+        const gameOver_sound = new Audio("music/samples_gameover.mp3");
+        gameOver_sound.play();
         drawGameOverBoard();
     }
 }

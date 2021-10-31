@@ -58,6 +58,33 @@
     flex-wrap: wrap;
 }
 
+.buttonMusic_container {
+    width: 300px;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    
+    
+
+}
+
+.music_button {
+    width: 6rem;
+    height: 2rem ;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Lucida Console', Courier, monospace;
+    font-size: 1em;
+    color:  #e0e4d1;
+    background-color: #a3aa85;
+}
+
 .logo__container {
     width: 100%
 }
