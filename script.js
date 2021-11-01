@@ -25,11 +25,36 @@ scoreDOM.textContent = SCORE;
 //  } 
 //  window.addEventListener('load', start_music, false); 
 
+
+// let audio = document.getElementById('audio');
+// let play = document.getElementById('play');
+
+// function accionPlay() {
+//     if (!audio.paused && !audio.ended) {
+//         audio.pause();
+//         play.value = '\u25BA';
+
+//     } else {
+//         audio.play();
+//         play.value = '||'
+//     }
+// };
+
+// function iniciar() {
+//     play.addEventListener("click", accionPlay, false);
+// };
+// audio.addEventListener('click', accionPlay);
+// window.addEventListener('load', iniciar, false);
+
+
+
+
 let audio = document.getElementById('audio');
 let play = document.getElementById('play');
 
+
 function accionPlay() {
-    if (!audio.paused && !audio.ended) {
+    if (!audio.paused) {
         audio.pause();
         play.value = '\u25BA';
 
@@ -39,11 +64,13 @@ function accionPlay() {
     }
 };
 
-function iniciar() {
-    play.addEventListener("click", accionPlay, false);
+function iniciar() {//con esta función activamos la música
+    audio.play()
 };
-audio.addEventListener('click', accionPlay);
-window.addEventListener('load', iniciar, false);
+
+play.addEventListener('click', accionPlay); // este evento sirve para parar y poner la música con el botón 
+window.addEventListener('load', iniciar); // evento para que al cargarse la página comience la música automaticamente
+
 
 
 
@@ -240,19 +267,13 @@ document.addEventListener('keydown', control);
 //     }
 // }, false);
 
-window.addEventListener("keydown", function(e) {
+window.addEventListener("keydown", function (e) {
     if (["ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp"].indexOf(e.code) > -1) {
         console.log(e.code)
         e.preventDefault();
     }
 });
 
-//bloqueo de scroll
-window.addEventListener("keydown", function(e) {
-    if (["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(e.code) > -1) {
-        e.preventDefault();
-    }
-}, false);
 
 // CAIDA DE PIEZAS
 // creacion de funcion callback  moveDown de interval para que bajen
@@ -260,11 +281,11 @@ function moveDown() {
     undrawTetrominoeInMainBoard()
     currentPosition += BOARD_WIDTH;
     drawTetrominoeInMainBoard();
-    freeze();
+    gameLoop();
 }
 // CONGELAMIENTO EN ULTIMA LINEA
 // creacion de funcion freeze para que cuando toquen el final, frenen
-function freeze() {
+function gameLoop() {
     if (currentTetromino.some(index => BOARD[currentPosition + index + 10].classList.contains('taken'))) {
         currentTetromino.forEach(i => BOARD[currentPosition + i].classList.add('taken'));
 
@@ -272,7 +293,7 @@ function freeze() {
         const shift_sound = new Audio("music/samples_shift.mp3");
         shift_sound.play();
 
-        isGameOver();
+        gameOver();
 
         //hacemos que caiga un nuevo tetromino
         generateRandomTetrominoe = nextRandom; //random tetromino generado es ahora nextRandom (0)
@@ -289,7 +310,7 @@ function freeze() {
 function moveLeft() {
     // despintar tetromino
     undrawTetrominoeInMainBoard()
-        // sacar el lado izquierdo (indice 0,10,20,30..) y guardarlo en constante
+    // sacar el lado izquierdo (indice 0,10,20,30..) y guardarlo en constante
     const IS_AT_LEFT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === 0);
     // si la posicion no és la de la variable de arriba
     if (!IS_AT_LEFT_EDGE) { currentPosition -= 1 };
@@ -304,7 +325,7 @@ function moveLeft() {
 // MOVER DERECHA
 function moveRight() {
     undrawTetrominoeInMainBoard()
-        // constante si algun indice del tetromino toca la posicion -1 (que es moverse del 0(la primera)a  -1(la última))
+    // constante si algun indice del tetromino toca la posicion -1 (que es moverse del 0(la primera)a  -1(la última))
     const IS_AT_RIGHT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === BOARD_WIDTH - 1);
     if (!IS_AT_RIGHT_EDGE) {
         currentPosition += 1
@@ -319,22 +340,33 @@ function moveRight() {
 function rotate(event) {
     const IS_AT_RIGHT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === BOARD_WIDTH - 1);
     const IS_AT_LEFT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === 0);
+    // Para solventar el problema de que el tetromino I se rompa cuando lo rotamos en la posición BOARD_WIDTH -1,
+    // he creado esta constante que devuelve true si estamos en BOARD_WIDTH -1
+    const IS_AT_RIGHT_EDGE_MINUS_1 = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === BOARD_WIDTH - 2);
     undrawTetrominoeInMainBoard();
 
-    if (IS_AT_LEFT_EDGE & currentTetromino != I_TETROMINO) {
+    // Condiciones para rotar la I y que no se rompa
+    if (IS_AT_RIGHT_EDGE && generateRandomTetrominoe === 2 && (currentRotation === 0 || currentRotation === 2)) {
+        currentPosition -= 2;
+        currentRotation += 1;
+        console.log(IS_AT_RIGHT_EDGE)
+    } else if (IS_AT_RIGHT_EDGE_MINUS_1 && generateRandomTetrominoe === 2 && (currentRotation === 0 || currentRotation === 2)) {
+        currentPosition -= 2;
+        currentRotation += 1;
+    } else if (IS_AT_LEFT_EDGE) {
         currentPosition += 1;
-        // currentRotation +=1
-    }
-
-    if (IS_AT_RIGHT_EDGE) {
+        currentRotation += 1;
+    } else if (IS_AT_RIGHT_EDGE) {
         currentPosition -= 1;
-        // currentRotation +=1
-    }
-    currentRotation++;
+        currentRotation += 1;
 
-    if (currentRotation >= currentTetromino.length) {
+    } else {
+        currentRotation += 1;
+    }
+    if (currentRotation === 4) {
         currentRotation = 0
     }
+
     currentTetromino = TETROMINOES[generateRandomTetrominoe][currentRotation];
 
     drawTetrominoeInMainBoard()
@@ -362,9 +394,9 @@ const UP_NEXT_TETROMINO = [
 //display tetromino en Mini Board 
 function displayShape() {
     MINI_BOARD.forEach(BOARD => { //selecciono del mini board todos los divs (BOARD)
-            BOARD.classList.remove('tetromino'); //despinto cualquier tetro que haya
-        })
-        //del nuevo array de tetros, pinto el tetromino random de next random(la funcion es llamada cuando hace freeze)
+        BOARD.classList.remove('tetromino'); //despinto cualquier tetro que haya
+    })
+    //del nuevo array de tetros, pinto el tetromino random de next random(la funcion es llamada cuando hace freeze)
     UP_NEXT_TETROMINO[nextRandom].forEach(index => {
         //por cada iteración sobre tetrominos randonm, le sumo valor index pasado arriba
         // y cada div de ese tetro del mini board toma clase tetro
@@ -373,18 +405,30 @@ function displayShape() {
 }
 
 function updateTetrisBoard() {
+    let contador = 0; // Creo un contador para saber cuando completamos cuatro filas de una sola vez
+
     for (let i = 0; i < 199; i += BOARD_WIDTH) {
         const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
-
         if (row.every(i =>
-                BOARD[i].classList.contains('tetromino')
-            )) {
-            SCORE += 50;
-            scoreDOM.textContent = SCORE;
+            BOARD[i].classList.contains('tetromino')
+        )) {
+
             row.forEach(i => {
+                contador++; // se suma uno al contador por cada bloque que contiene la clase tetromino
                 BOARD[i].classList.remove('taken');
                 BOARD[i].classList.remove('tetromino');
-            })
+                console.log(contador);
+                if (contador === 40) {
+                    const level_sound = new Audio("music/samples_level.mp3");
+                    level_sound.play();
+                    SCORE += 1000;
+                    contador = 0; // devolvemos el contador a 0 para reiniciar el proceso
+                }
+
+            });
+            SCORE += 50;
+            scoreDOM.textContent = SCORE; // actualizamos el score en el DOM
+
             const SQUARES_REMOVED = BOARD.splice(i, BOARD_WIDTH);
             BOARD = SQUARES_REMOVED.concat(BOARD);
             BOARD.forEach(index => GRID.appendChild(index));
@@ -436,10 +480,17 @@ function drawGameOverBoard() {
 
 }
 
+// Esta función nos devolverá true si se cumple la condición de Game Over
 function isGameOver() {
     if (currentPosition >= BOARD_WIDTH && currentPosition <= BOARD_WIDTH * 2) {
-        clearInterval(TIMER);
+        return true
+    }
+}
 
+// Esta función se encarga de ejecutar las acciones necesarias una vez la función isGameOver sea true
+function gameOver() {
+    if (isGameOver()) {
+        clearInterval(TIMER);
         // quito el sonido del tema principal
         audio.pause();
         audio.currentTime = 0;
@@ -450,3 +501,4 @@ function isGameOver() {
         drawGameOverBoard();
     }
 }
+
