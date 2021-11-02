@@ -8,8 +8,6 @@ let SCORE = 0;
 const scoreDOM = document.getElementById('score__board');
 scoreDOM.textContent = SCORE;
 
-
-
 let audio = document.getElementById('audio');
 let play = document.getElementById('play');
 
