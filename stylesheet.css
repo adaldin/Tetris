@@ -65,14 +65,11 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-end;
-    
-    
-
 }
 
 .music_button {
     width: 6rem;
-    height: 2rem ;
+    height: 2rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -81,7 +78,7 @@
     gap: 0.5rem;
     font-family: 'Lucida Console', Courier, monospace;
     font-size: 1em;
-    color:  #e0e4d1;
+    color: #e0e4d1;
     background-color: #a3aa85;
 }
 
@@ -100,6 +97,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 
@@ -199,7 +197,7 @@
 
 /* GAME OVER DIV */
 
-.gameOverDiv{
+.gameOverDiv {
     position: absolute;
     width: 300px;
     height: 200px;
@@ -212,8 +210,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
-
+    box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
 .gameOverButton {
@@ -222,14 +219,14 @@
     width: 40%;
 }
 
-.gameOverButton:hover{
-    background-color: #a3aa85 ;
+.gameOverButton:hover {
+    background-color: #a3aa85;
 }
 
 .gameOverButton:active {
     background-color: #C6CFA2;
 }
 
-.gameOverDiv p{
+.gameOverDiv p {
     font-size: 1.5rem;
 }
