@@ -9,45 +9,6 @@ const scoreDOM = document.getElementById('score__board');
 scoreDOM.textContent = SCORE;
 
 
-// creo el evento para que suene el tema principal o se pause
-// music_button.addEventListener('onlplay', () => {    
-//     let main_sound = main_sound.play();
-// });
-// function start_music() { 
-//         // selecciono el button para la música tema principal
-//     let music_button = document.getElementById("music_button");
-//     music_button.addEventListener('click', press_button, false); 
-//  } 
-//  function press_button() { 
-//         // selecciono la etiqueta de audio para incluir el tema principal
-//     let main_sound = document.getElementById("audio");
-//     main_sound.play(); 
-//  } 
-//  window.addEventListener('load', start_music, false); 
-
-
-// let audio = document.getElementById('audio');
-// let play = document.getElementById('play');
-
-// function accionPlay() {
-//     if (!audio.paused && !audio.ended) {
-//         audio.pause();
-//         play.value = '\u25BA';
-
-//     } else {
-//         audio.play();
-//         play.value = '||'
-//     }
-// };
-
-// function iniciar() {
-//     play.addEventListener("click", accionPlay, false);
-// };
-// audio.addEventListener('click', accionPlay);
-// window.addEventListener('load', iniciar, false);
-
-
-
 
 let audio = document.getElementById('audio');
 let play = document.getElementById('play');
