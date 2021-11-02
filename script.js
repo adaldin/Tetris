@@ -64,7 +64,7 @@ function accionPlay() {
     }
 };
 
-function iniciar() {//con esta función activamos la música
+function iniciar() { //con esta función activamos la música
     audio.play()
 };
 
@@ -267,7 +267,7 @@ document.addEventListener('keydown', control);
 //     }
 // }, false);
 
-window.addEventListener("keydown", function (e) {
+window.addEventListener("keydown", function(e) {
     if (["ArrowDown", "ArrowLeft", "ArrowRight", "ArrowUp"].indexOf(e.code) > -1) {
         console.log(e.code)
         e.preventDefault();
@@ -310,7 +310,7 @@ function gameLoop() {
 function moveLeft() {
     // despintar tetromino
     undrawTetrominoeInMainBoard()
-    // sacar el lado izquierdo (indice 0,10,20,30..) y guardarlo en constante
+        // sacar el lado izquierdo (indice 0,10,20,30..) y guardarlo en constante
     const IS_AT_LEFT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === 0);
     // si la posicion no és la de la variable de arriba
     if (!IS_AT_LEFT_EDGE) { currentPosition -= 1 };
@@ -325,7 +325,7 @@ function moveLeft() {
 // MOVER DERECHA
 function moveRight() {
     undrawTetrominoeInMainBoard()
-    // constante si algun indice del tetromino toca la posicion -1 (que es moverse del 0(la primera)a  -1(la última))
+        // constante si algun indice del tetromino toca la posicion -1 (que es moverse del 0(la primera)a  -1(la última))
     const IS_AT_RIGHT_EDGE = currentTetromino.some(index => (currentPosition + index) % BOARD_WIDTH === BOARD_WIDTH - 1);
     if (!IS_AT_RIGHT_EDGE) {
         currentPosition += 1
@@ -394,9 +394,9 @@ const UP_NEXT_TETROMINO = [
 //display tetromino en Mini Board 
 function displayShape() {
     MINI_BOARD.forEach(BOARD => { //selecciono del mini board todos los divs (BOARD)
-        BOARD.classList.remove('tetromino'); //despinto cualquier tetro que haya
-    })
-    //del nuevo array de tetros, pinto el tetromino random de next random(la funcion es llamada cuando hace freeze)
+            BOARD.classList.remove('tetromino'); //despinto cualquier tetro que haya
+        })
+        //del nuevo array de tetros, pinto el tetromino random de next random(la funcion es llamada cuando hace freeze)
     UP_NEXT_TETROMINO[nextRandom].forEach(index => {
         //por cada iteración sobre tetrominos randonm, le sumo valor index pasado arriba
         // y cada div de ese tetro del mini board toma clase tetro
@@ -410,8 +410,8 @@ function updateTetrisBoard() {
     for (let i = 0; i < 199; i += BOARD_WIDTH) {
         const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
         if (row.every(i =>
-            BOARD[i].classList.contains('tetromino')
-        )) {
+                BOARD[i].classList.contains('tetromino')
+            )) {
 
             row.forEach(i => {
                 contador++; // se suma uno al contador por cada bloque que contiene la clase tetromino
@@ -482,7 +482,7 @@ function drawGameOverBoard() {
 
 // Esta función nos devolverá true si se cumple la condición de Game Over
 function isGameOver() {
-    if (currentPosition >= BOARD_WIDTH && currentPosition <= BOARD_WIDTH * 2) {
+    if (currentTetromino.some(i => BOARD[currentPosition + i + BOARD_WIDTH].classList.contains('taken')) && currentPosition <= BOARD_WIDTH * 2) {
         return true
     }
 }
@@ -501,4 +501,3 @@ function gameOver() {
         drawGameOverBoard();
     }
 }
-
