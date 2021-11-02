@@ -23,12 +23,9 @@ function accionPlay() {
     }
 };
 
-function iniciar() { //con esta función activamos la música
-    audio.play()
-};
+
 
 play.addEventListener('click', accionPlay); // este evento sirve para parar y poner la música con el botón 
-window.addEventListener('load', iniciar); // evento para que al cargarse la página comience la música automaticamente
 
 
 
