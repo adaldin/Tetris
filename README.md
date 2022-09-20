@@ -1,5 +1,5 @@
 
-![tetris(tetris.gif)](https://tetrispractice.netlify.app)
+![tetris(/img/tetris.gif)](https://tetrispractice.netlify.app)
 
 # Tetris
 
