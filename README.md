@@ -10,7 +10,7 @@ Take a look of the website clicking [here](https://tetrispractice.netlify.app)!
 Any suggestion is more than welcome!
 
 ## License
-[@tejeoner34](https://avatars.githubusercontent.com/u/91265524?v=4)
-[@adaldin](https://avatars.githubusercontent.com/u/18453013?v=4)
-[@elenar10](https://avatars.githubusercontent.com/u/91266228?v=4)
+[@tejeoner34](https://github.com/tejeoner34)
+[@adaldin](https://github.com/adaldin)
+[@elenar10](https://github.com/elenar10)
 
