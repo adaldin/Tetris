@@ -1,5 +1,4 @@
-
-![tetris(/img/tetris.gif)](https://tetrispractice.netlify.app)
+![tetris](https://user-images.githubusercontent.com/18453013/191305562-0e3c741f-c5b7-4c0f-8172-03f60e711d73.gif)
 
 # Tetris
 
@@ -16,4 +15,5 @@ Any suggestion is more than welcome!
 [@tejeoner34](https://github.com/tejeoner34)
 [@adaldin](https://github.com/adaldin)
 [@elenar10](https://github.com/elenar10)
+
 
