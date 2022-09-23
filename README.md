@@ -20,10 +20,9 @@
 
 <div id="section" align="center">
   <h2>Authors</h2>
-  <ul>
-    <li><a href="https://github.com/tejeoner34">@tejeoner34</a></li>
-    <li><a href="https://github.com/adaldin">@adaldin</a></li>
-    <li><a href="https://github.com/elenar10">@elenar10</a></li>
+    <p<a href="https://github.com/tejeoner34">@tejeoner34</a></p>
+    <p><a href="https://github.com/adaldin">@adaldin</a></p>
+    <p><a href="https://github.com/elenar10">@elenar10</a></p>
 </div>
 
 
