@@ -2,8 +2,10 @@
   <img src="https://user-images.githubusercontent.com/18453013/192013441-a19d486a-8983-48fb-a6cf-d03df1556bb8.gif"/>
 </div>
 
-
+--------------------------------------------------
+<div id="nav" align="center">
 # Tetris
+</div>
 
 Re-creation of Tetris game using Vanilla JS for a school exercise.
 
