@@ -4,7 +4,7 @@
 
 --------------------------------------------------
 <div id="nav" align="center">
-# Tetris
+<h1>Tetris
 </div>
 
 Re-creation of Tetris game using Vanilla JS for a school exercise.
