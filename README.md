@@ -10,9 +10,9 @@
 
 <div id="section" align="center">
   <h2>Demo</h2>
-   <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif"/>
-  <br>
-  Take a look of the website clicking <a href="https://tetrispractice.netlify.app">here!</a>
+  <p> Take a look of the website</p>
+  <a href="https://tetrispractice.netlify.app">
+   <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif"/></a>
 </div>
 
 <div id="section" align="center">
