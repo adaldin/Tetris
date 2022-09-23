@@ -9,18 +9,22 @@
 </div>
 
 <div id="section" align="center">
-  <h3>Demo</h3>
+  <h2>Demo</h2>
   Take a look of the website clicking [here](https://tetrispractice.netlify.app)!
 </div>
 
 <div id="section" align="center">
-  <h3>Contributing</h3>
- Any suggestion is more than welcome!
+  <h2>Contributing</h2>
+ Any suggestion is more than welcome! ❤️
 </div>
 
-## Authors
+<div id="section" align="center">
+  <h2>Authors</h2>
 [@tejeoner34](https://github.com/tejeoner34)
 [@adaldin](https://github.com/adaldin)
 [@elenar10](https://github.com/elenar10)
+</div>
+
+
 
 
