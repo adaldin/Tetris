@@ -1,4 +1,7 @@
-![tetris](https://user-images.githubusercontent.com/18453013/191305562-0e3c741f-c5b7-4c0f-8172-03f60e711d73.gif)
+<div id="header" align="center">
+  <img src="https://user-images.githubusercontent.com/18453013/192013441-a19d486a-8983-48fb-a6cf-d03df1556bb8.gif"/>
+</div>
+
 
 # Tetris
 
