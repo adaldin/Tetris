@@ -10,7 +10,7 @@
 
 <div id="section" align="center">
   <h2>Demo</h2>
-  Take a look of the website clicking [here](https://tetrispractice.netlify.app)!
+  Take a look of the website clicking <a href="https://tetrispractice.netlify.app">here!</a>
 </div>
 
 <div id="section" align="center">
@@ -20,9 +20,10 @@
 
 <div id="section" align="center">
   <h2>Authors</h2>
-[@tejeoner34](https://github.com/tejeoner34)
-[@adaldin](https://github.com/adaldin)
-[@elenar10](https://github.com/elenar10)
+  <ul>
+    <li><a href="https://github.com/tejeoner34">@tejeoner34</a></li>
+    <li><a href="https://github.com/adaldin">@adaldin</a></li>
+    <li><a href="https://github.com/elenar10">@elenar10</a></li>
 </div>
 
 
