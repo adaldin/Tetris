@@ -6,7 +6,7 @@
 <div id="nav" align="center">
   <h1>Tetris</h1>
 </div>
---------------------------------------------------
+
 <div id="section">
   <small>Re-creation of Tetris game using Vanilla JS for a school exercise.</small>
 </div>
