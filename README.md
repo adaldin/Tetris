@@ -3,14 +3,12 @@
 </div>
 
 --------------------------------------------------
-<div id="nav" align="center">
-  <h1>Tetris</h1>
-   <small>Re-creation of Tetris game using Vanilla JS for a school exercise.</small>
-</div>
+# Tetris
 
-<div id="section" align="center">
-  <h2>Demo</h2>
-  <p> Take a look of the website</p>
+
+## Ready to play?
+Take a look and have fun scoring ![here](https://tetrispractice.netlify.app)!
+<div>
   <a href="https://tetrispractice.netlify.app" target="blank">
    <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif"/></a>
 </div>
