@@ -6,6 +6,7 @@
 # Tetris
 Remake of the classic Tetris game, builded entirely in Vanilla JS, HTML and CSS for an exercise in a bootcamp. The idea was to work on the principles of DRY, BEM using ES6.
 > *Playing 'Tetris' for 15 minutes is like meditation.*
+> * **Ezra Koenig** *
 
 ## Ready to play? 🎮
 Take a look and have fun scoring!
@@ -38,9 +39,9 @@ Upcoming features on this project:
 5. Open a Pull Request
 
 ## Authors ✍️
-[@tejeoner34](http://github.com/tejeoner34)
-[@adaldin](http://github.com/adaldin)
-[@elenar10](https://github.com/elenar10)
+* [@tejeoner34](http://github.com/tejeoner34)
+* [@adaldin](http://github.com/adaldin)
+* [@elenar10](https://github.com/elenar10)
 
 
 
