@@ -8,6 +8,7 @@
 
 ## Ready to play?
 Take a look and have fun scoring ![here](https://tetrispractice.netlify.app)!
+[![here]([http://www.google.com.au/images/nav_logo7.png](https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif))](https://tetrispractice.netlify.app)
 <div>
   <a href="https://tetrispractice.netlify.app" target="blank">
    <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif"/></a>
