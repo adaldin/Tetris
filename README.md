@@ -4,7 +4,7 @@
 
 --------------------------------------------------
 # Tetris
-
+Remake of the classic Tetris game, builded entirely in Vanilla JS, HTML and CSS for an exercise in a bootcamp. The idea was to work on the principles of DRY, BEM using ES6.
 
 ## Ready to play? 🎮
 Take a look and have fun scoring!
@@ -16,7 +16,7 @@ Take a look and have fun scoring!
 ## Builded with
 <div>
 <img src="https://img.icons8.com/external-those-icons-flat-those-icons/48/000000/external-HTML5-programming-and-development-those-icons-flat-those-icons.png"alt="html logo"/>
-  <img src="https://img.icons8.com/color/48/000000/css3.png" alt="css3 logo, css logo"/>
+  <img src="https://img.icons8.com/color/48/000000/css3.png" alt="css3 logo, css logo" width="50px"/>
   <img src="https://img.icons8.com/fluency/48/000000/javascript.png"alt="js logo"/>
     </div>
 
