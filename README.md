@@ -9,9 +9,9 @@ Remake of the classic Tetris game, builded entirely in Vanilla JS, HTML and CSS 
 
 ## Ready to play? 🎮
 Take a look and have fun scoring!
-<div align="center" width="1000px">
+<div align="center">
   <a href="https://tetrispractice.netlify.app" target="blank">
-   <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif" width="100%"/></a>
+   <img src="user-images.githubusercontent.com/18453013/192245542-8cd4a916-6658-45a7-99c0-b432ec9fd838.gif" /></a>
 </div>
 
 ## Builded with ⚙️
