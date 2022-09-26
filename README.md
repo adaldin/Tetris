@@ -22,7 +22,7 @@ Take a look and have fun scoring!
   <img src="https://img.icons8.com/fluency/48/000000/javascript.png"alt="js logo"/>
     </div>  
 
-## Roadmap
+## Roadmap 🗺️
 Upcoming features on this project:
 * Level up
 * Transitions between levels
