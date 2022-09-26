@@ -13,7 +13,7 @@ Take a look and have fun scoring!
    <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif" width="100%"/></a>
 </div>
 
-## Builded with
+## Builded with ⚙️
 <div>
 <img src="https://img.icons8.com/external-those-icons-flat-those-icons/48/000000/external-HTML5-programming-and-development-those-icons-flat-those-icons.png"alt="html logo" width="40px"/>
   <img src="https://img.icons8.com/color/48/000000/css3.png" alt="css3 logo, css logo"/>
@@ -21,13 +21,18 @@ Take a look and have fun scoring!
     </div>
 
 
-<div id="section" align="center">
-  <h2>Contributing</h2>
- Any suggestion is more than welcome! ❤️
-</div>
+## Contributing 🤝
+ Any suggestion is more than welcome & greatly appreciated! ❤️
+ Feel free to follow next steps in order to contribute to this project
+ 
+1.Fork the Project
+2.Create your Feature Branch (git checkout -b feature/AmazingFeature)
+3.Commit your Changes (git commit -m 'Add some AmazingFeature')
+4.Push to the Branch (git push origin feature/AmazingFeature)
+5.Open a Pull Request
 
-<div id="section" align="center">
-  <h2>Authors</h2>
+## Authors ✍️
+[![@tejeoner34](http://github.com/tejeoner34)]
     <p><a href="https://github.com/tejeoner34">@tejeoner34</a></p>
     <p><a href="https://github.com/adaldin">@adaldin</a></p>
     <p><a href="https://github.com/elenar10">@elenar10</a></p>
