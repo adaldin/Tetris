@@ -15,8 +15,10 @@ Take a look and have fun scoring!
 
 ## Builded with
 <div>
-<a href="https://www.freepnglogos.com/pics/javascript" title="Image from freepnglogos.com"><img src="https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png" width="200" alt="javascript vector logo yellow png transparent javascript vector" /></a>
-  </div>
+<img src="https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png" width="48" alt="javascript vector logo yellow png transparent javascript vector" />
+ <img src="https://www.freepnglogos.com/uploads/html5-logo-png/html5-logo-html-logo-0.png" width="48" alt="html5 logo, html logo" />
+  <img src="https://img.icons8.com/color/48/000000/css3.png" width="48" alt="css3 logo, css logo"/>
+    </div>
 
 
 <div id="section" align="center">
