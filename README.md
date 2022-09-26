@@ -32,7 +32,7 @@ Take a look and have fun scoring!
 5.Open a Pull Request
 
 ## Authors ✍️
-[![@tejeoner34](http://github.com/tejeoner34)]
+[@tejeoner34](http://github.com/tejeoner34)
     <p><a href="https://github.com/tejeoner34">@tejeoner34</a></p>
     <p><a href="https://github.com/adaldin">@adaldin</a></p>
     <p><a href="https://github.com/elenar10">@elenar10</a></p>
