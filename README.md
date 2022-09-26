@@ -8,7 +8,7 @@
 
 ## Ready to play?
 Take a look and have fun scoring!
-<div align="center">
+<div align="center" width="100%">
   <a href="https://tetrispractice.netlify.app" target="blank">
    <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif"/></a>
 </div>
