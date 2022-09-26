@@ -6,12 +6,18 @@
 # Tetris
 
 
-## Ready to play?
+## Ready to play? 🎮
 Take a look and have fun scoring!
 <div align="center" width="1000px">
   <a href="https://tetrispractice.netlify.app" target="blank">
    <img src="https://user-images.githubusercontent.com/18453013/192016990-c6d93bab-828d-4e19-b825-0e6c0e5f018c.gif" width="100%"/></a>
 </div>
+
+## Builded with
+<div>
+<a href="https://www.freepnglogos.com/pics/javascript" title="Image from freepnglogos.com"><img src="https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png" width="200" alt="javascript vector logo yellow png transparent javascript vector" /></a>
+  </div>
+
 
 <div id="section" align="center">
   <h2>Contributing</h2>
