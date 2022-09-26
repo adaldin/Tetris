@@ -5,7 +5,7 @@
 --------------------------------------------------
 # Tetris
 Remake of the classic Tetris game, builded entirely in Vanilla JS, HTML and CSS for an exercise in a bootcamp. The idea was to work on the principles of DRY, BEM using ES6.
-> Playing 'Tetris' for 15 minutes is like meditation.
+> *Playing 'Tetris' for 15 minutes is like meditation.*
 
 ## Ready to play? 🎮
 Take a look and have fun scoring!
@@ -31,8 +31,8 @@ Upcoming features on this project:
  Any suggestion is more than welcome & greatly appreciated! ❤️
  Feel free to follow next steps in order to contribute to this project
  
-1.Fork the Project
-2.Create your Feature Branch (git checkout -b feature/AmazingFeature)
+*Fork the Project *
+*Create your Feature Branch (git checkout -b feature/AmazingFeature) *
 3.Commit your Changes (git commit -m 'Add some AmazingFeature')
 4.Push to the Branch (git push origin feature/AmazingFeature)
 5.Open a Pull Request
