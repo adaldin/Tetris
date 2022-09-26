@@ -15,8 +15,8 @@ Take a look and have fun scoring!
 
 ## Builded with
 <div>
+  <img src="https://img.icons8.com/external-those-icons-flat-those-icons/24/000000/external-HTML5-programming-and-development-those-icons-flat-those-icons.png"width="48" alt="html5 logo, html logo" />
 <img src="https://www.freepnglogos.com/uploads/javascript-png/javascript-vector-logo-yellow-png-transparent-javascript-vector-12.png" width="48" alt="javascript vector logo yellow png transparent javascript vector" />
- <img src="https://www.freepnglogos.com/uploads/html5-logo-png/html5-logo-html-logo-0.png" width="48" alt="html5 logo, html logo" />
   <img src="https://img.icons8.com/color/48/000000/css3.png" width="48" alt="css3 logo, css logo"/>
     </div>
 
